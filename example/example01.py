@@ -22,7 +22,7 @@ print(f'''To.{email}')
 
 
 # 실전예제 2
-# 내가 푼 풀이 방식
+
 
 # riseSun = '오전 6시 30분'
 # dawnSun = '오후 7시 20분'
@@ -45,7 +45,6 @@ print(f'''To.{email}')
 # print(f'지금까지{monthDay} {day}요일 날씨 에보였습니다.')
 
 
-# 강사님 풀이 방법
 day = input('요일은?')
 date = input('날짜(월일)는?')
 minTemp = input('최저 기온은?')
@@ -68,36 +67,65 @@ print(f'''내일 날씨 예보입니다.')
 
 
 
-# 영수증 예제
-food = '소주'
-food2 = '너나치킨'
-totalTax = '과세합계'
-vat = '부가세'
-total = '총합계'
-amounTreceived = '받은금액'
-changes = '잔돈'
+# 영수증 예제 직접 풀어본 풀이
 
-print('[ 음식나라 ]')
+# food = '소주'
+# food2 = '너나치킨'
+# totalTax = '과세합계'
+# vat = '부가세'
+# total = '총합계'
+# amounTreceived = '받은금액'
+# changes = '잔돈'
+#
+# print('[ 음식나라 ]')
+#
+# print('---------------------')
+#
+# print(f'{food}     2 '     ,   3000+3000)
+# print(f'{food2}    1           12000')
+#
+# print('---------------------')
+#
+# print(f'{totalTax}       16200 ')
+# print(f'{vat}            1800 ')
+#
+# print('---------------------')
+#
+# print(f'{total} ',           6000+12000)
+# print(f'받은금액 ' ,           50000 )
+# print(f'{changes} ' ,        50000-18000)
+#
+# print('---------------------')
+#
+# print('2014. 07. 07 14:35:24')
 
-print('---------------------')
+date = '2014. 07. 07 14:35:24'
+soju = 2
+chiken = 1
 
-print(f'{food}     2 '     ,   3000+3000)
-print(f'{food2}    1           12000')
+total = (soju * 3000) + (chiken * 12000)
+vat = total * (10/110)  # 부가세 = 합계급액 * 10/110
+supply = total * (100/110) # 공급가액 = 합계금액 * 100/110
+paid = 50000
+change = paid - total
 
-print('---------------------')
+print(f'''
+[음식나라]
 
-print(f'{totalTax}       16200 ')
-print(f'{vat}            1800 ')
+-------------------------
+소주\t\t{soju}\t\t{soju * 3000}
+너나치킨\t{chiken}\t\t{chiken * 12000} 
+-------------------------
+과세합계\t\t\t{int(supply)}
+부가세\t\t\t{int(vat)}
+-------------------------
+총합계\t\t\t{total}
+받은금액\t\t\t{paid}
+잔돈\t\t\t\t{change}
+-------------------------
+{date}
+''')
 
-print('---------------------')
-
-print(f'{total} ',           6000+12000)
-print(f'받은금액 ' ,           50000 )
-print(f'{changes} ' ,        50000-18000)
-
-print('---------------------')
-
-print('2014. 07. 07 14:35:24')
 
 
 
