@@ -45,4 +45,6 @@ print(dt.datetime.now()
 
 # 자동차 주행거리
 
+# 컴퓨터 업무 수량 파악
+
 
