@@ -107,19 +107,29 @@ result = '합격!' if myScore >= 90 else '불합격!'
 print(result)
 
 # 복리 계산기
-Deposit = 5000000 ** 5
-print(f'5년만기 후 수령액 : {de}')
+money = 5_000_000
+rate = 0.05
+money = money + (money * rate) # 1년후 총 금액
+money = money + (money * rate) # 2년후 총 금액
+money = money + (money * rate) # 3년후 총 금액
+money = money + (money * rate) # 4년후 총 금액
+money = money + (money * rate) # 5년후 총 금액
 
+print(f'5년 후 총 수령액 : {int(money):,} 원')
 
 # 범퍼카 탑승
-height = 150
-result = '탑승!' if height >= 120 else '탑승불가!'
+child = int(input('어린이의 신장을 입력하세요 :'))
+isRide = (child >= 120)
+
+print(f'{isRide}')
+
 # 범퍼카 탑승 판별
-
-height = int(input('어린이탑승키'))
-result = '탑승' if height >= 120 and height < 170 else '탑승불가!'
+child = int(input('어린이의 신장을 입력하세요 :'))
+isRide = (child >= 120) & (child < 170)
+print(f'{isRide}')
 # 적자/흑자 판별
+income = int(input('수입은?'))
+outcome = int(input('지출은'))
 
-income = 4000000
-expenditure = 3000000
-
+result = '흑자'if income > outcome else '적자'
+print(f'{result}')
