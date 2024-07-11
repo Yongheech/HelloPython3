@@ -164,17 +164,16 @@ print(bool(''), bool('abc123')) # 문자를 bool로 변환시
 #변수명 =input(메세지)
 # 주의! - input함수로 입력받은 값은 무조건 문자로 취급
 #이름과 나이를 입력받아 출력
-#name = input('이름은?')
-#age = input('나이는?')
-
-#print(name,age)
+name = input('이름은?')
+age =  input('나이는?')
+print(name,age)
 
 
 # 환율 계산프로그램 작성
 # 달러를 입력하면 원화로 계산해서 출력 (1$ -> 1382.12원)
-#dollar = input('달러는?')
-#won = int(dollar) * 1382.12
-#print(dollar, won)
+dollar = input('달러는?')
+won = int(dollar) * 1382.12
+print(dollar, won)
 
 # 문자열 템플릿
 # 파이썬에서 문자열 속에 변수를 포함시켜 출력할때 유용하게 사용하는 방법
@@ -184,13 +183,3 @@ print(bool(''), bool('abc123')) # 문자를 bool로 변환시
 lang = 'python'
 print('Hello, ',lang, '!!')
 print(f'Hello, {lang}!!')
-
-
-# 비밀번호 메일 발송 프로그램
-
-
-
-riseSun = '오전 6시 30분'
-dawnSun = '오후 7시 20분'
-
-print(f'일출시간은 {riseSun}이고, 일몰시간은 {dawnSun}입니다')
