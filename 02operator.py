@@ -133,3 +133,4 @@ outcome = int(input('지출은'))
 
 result = '흑자'if income > outcome else '적자'
 print(f'{result}')
+
