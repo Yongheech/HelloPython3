@@ -19,10 +19,10 @@ grds = []
 # 성적 데이터 입력받음
 
 for i in range(3):
-     names.append(input(f'{i}1번학생 이름은'))
-     kors.append(int(input(f'{i}1번학생 국어는')))
-     engs.append(int(input(f'{i}1번학생 영어는')))
-     mats.append(int(input(f'{i}1번학생 수학은')))
+     names.append(input(f'{i+1}1번학생 이름은'))
+     kors.append(int(input(f'{i+1}1번학생 국어는')))
+     engs.append(int(input(f'{i+1}1번학생 영어는')))
+     mats.append(int(input(f'{i+1}1번학생 수학은')))
 
 
 # 성적 처리
