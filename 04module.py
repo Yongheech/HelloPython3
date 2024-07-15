@@ -77,7 +77,7 @@ basetemp = 20
 depps = int(input('수심을 입력하세요 : '))
 #temp = basetemp - (depps // 10 * 0.7)
 temp = (op.sub(basetemp,
-        op.mul(op.floordiv(depps , 10) , 0.7))
+        op.mul(op.floordiv(depps , 10) , 0.7)))
 
 print(f'수심 {depps}m - 수온 {temp}℃')
 
@@ -85,7 +85,7 @@ print(f'수심 {depps}m - 수온 {temp}℃')
 import  operator as op
 
 speed = int(input('주행속도:'))
-time = int(input('주행시간:')))
+time = int(input('주행시간:'))
 
 # dist = speed * time
 dist = op.mul (speed , time)
