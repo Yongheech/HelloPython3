@@ -100,26 +100,28 @@ while i < 100:
 trainA = 10
 trainB = 25
 trainC = 30
-min = 1
+mins = 1
 
-while min < 541:
-    if min % trainA == 0 and min % 25 == 0: # 50분 교차
-        hour = 9 + min // 60
-        min = min % 60
-        print(f'{hour}시{min}분 : A - B 교차!')
+while mins < 541:
+    if mins % 5 == 0:
+        if mins % trainA == 0 and mins % 25 == 0: # 50분 교차
+            print(f'{9 + mins // 60:02d}시{mins % 60:02d}분 : A - B 교차!')
 
-    elif min % trainB == 0 and min % trainC == 0:
-        hour = 9 + min // 60
-        min = min % 60
-        print(f'{hour}시{min}분 : B - C 교차!')
+    elif mins % trainB == 0 and mins % trainC == 0:
+        print(f'{9 + mins // 60:02d}시{mins % 60:02d}분 : B - C 교차!')
 
-    elif min % trainC == 0 and min % trainA == 0:  # 30분 간격
-        hour = 9 + min // 60
-        min = min % 60
-        print(f'{hour}시{min}분 : C - A 교차!')
+    elif mins % trainC == 0 and mins % trainA == 0:  # 30분 간격
+        print(f'{9 + mins // 60:02d}시{mins % 60:02d}분 : C - A 교차!')
 
-    min +=1
+    elif mins % trainA == 0 and mins % trainB == 0 and mins % trainC == 0:
+        print(f'{9 + mins // 60:02d}시{mins % 60:02d}분 : A - B - C 교차!')
 
+
+    mins +=1
+
+
+hour = 9 + mins // 60
+min = mins % 60
 # 로그인 기능 만들기(while문 사용)
 cntLogin = 1
 
@@ -138,7 +140,37 @@ while True:
         break
 
 
+# 반복문 내 건너뛰기 : continue
+# for, while문 내에서 반복흐름을 일시적으로 넘기기 위해 사용
 
+# 1 ~ 10 사이 정수 중 홀수의 합 출력
+sum = 0
+for i in range(1, 10+1):
+    if i % 2 == 0: continue
+    sum += i
 
+print(sum)
 
+# 1 ~ 100 사이 정수의 합을 출력
+# 단, 3의 배수나 7의 배수는 제외
+# for문
+sum = 0
+for i in range(1, 100+1):
+    if i % 3 == 0 or i % 7 == 0: continue
+    sum += i
 
+print(sum)
+
+#---  while 문
+
+sum =0
+i = 0
+
+while i < 100:
+    i += 1
+    if i % 3 == 0  or i % 7 == 0 : continue
+    sum += i
+
+print(sum)
+
+# 횟수가 정해져있는 반복문은 for 문으로 정해져있지 않은 반복문은 while문으로
