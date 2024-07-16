@@ -41,7 +41,6 @@ for i in range(1, 9+1): # 행
 cardno = input('카드번호는?')
 
 result = '잘못된 카드 번호입니다'
-
 if cardno[:2] == '35':
     if cardno == '356317': result = 'JCB카드 NH농협카드'
     elif cardno == '356901':result = 'JCB카드 신한카드'
