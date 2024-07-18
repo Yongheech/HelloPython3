@@ -69,3 +69,62 @@ print(val)
 # pip install scikit-learn
 # pip install pymysql # mysql 데이터베이스
 # pip install fastapi
+
+# alpacatnt.example 에 각 문제에 대한 모듈 작성
+
+# 단위 환산
+# (convertUnit/readUnit/printUnits)
+import alpacatnt.example as zex
+
+mm = zex.readUnit()
+units = zex.convertUnit(mm)
+zex.printUnits(units)
+# 할인된 상품 가격표 출력
+# (discountPrice/readDiscount/printPrices)
+import alpacatnt.example as zex
+
+rate = zex.readDiscount()
+dcprice = zex.discountPrice(rate)
+zex.printPrice(dcprice , rate)
+
+# 주민번호 유호성 체크
+# 주민등록번호 유효성 검사 공식은
+# 주민등록번호 앞 12자리에
+# 각각 2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5를 곱한 값을
+# 모두 더하고
+# 그 결과값을 11로 나눈 나머지를 11에서 뺍니다.
+# 계산 결과값이 주민등록번호 마지막 자리 숫자와 일치하면 유호!
+# 1 2 3 4 5 6 - 1 2 3 4 5 6 7
+# * * * * * *   * * * * * *
+# 2 3 4 5 6 7   8 9 2 3 4 5
+# 2+6+12+20+30+42+8+18+6+12+20+30
+# 11 - (206 % 11) = 3 ? 7
+# (checkJumin/readJumin/printJumin)
+sum = 0
+result = '주민번호 불일치!'
+
+jumin = input('주민번호는? (xxxxxxyyyyyyy)')
+sum += int(jumin[0]) * 2
+sum += int(jumin[1]) * 3
+sum += int(jumin[2]) * 4
+sum += int(jumin[3]) * 5
+sum += int(jumin[4]) * 6
+sum += int(jumin[5]) * 7
+sum += int(jumin[6]) * 8
+sum += int(jumin[7]) * 9
+sum += int(jumin[8]) * 2
+sum += int(jumin[9]) * 3
+sum += int(jumin[10]) * 4
+sum += int(jumin[11]) * 5
+
+checker = (11 - (sum % 11)) % 10
+if checker == int(jumin[12]): result = '주민번호 유효!'
+print(result)
+
+
+
+import  alpacatnt.example as zex
+
+zex.checkJumin('1234561234567')
+
+# zex.checkJumin2('123456-1234567')
