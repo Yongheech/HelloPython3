@@ -105,6 +105,42 @@ price = int(input('지불해야 할 금액은? '))
 paid = int(input('받은금액은? '))
 compute_charge(price,paid)
 
+# 26 - 세금 계산 computeTax
 
+def computeTax(isMarried, salary):
+    tax = 0
+    if isMarried == 0:
+        tax = salary * 0.1
+        if salary >= 3000:
+            tax = salary * 0.25
+    elif isMarried == 1:
+        tax = salary * 0.15
+        if salary >= 6000:
+            tax = salary * 0.35
 
+    print(f'''
+    결혼여부 : {isMarried}, 연봉 : {salary},
+    세금 : {tax:,}''')
+
+# 데이터 입력 및 함수 호출
+isMarried = int(input('결혼여부는? 0:미혼, 1:기혼'))
+salary = int(input('연봉은?'))
+computeTax(isMarried, salary)
+
+# 27 - 윤년 구분 isLeapYear
+# 1992, 2000, 2020 (윤)
+# 1900, 2100 (윤x)
+
+def isLeapYear(year):
+
+    isLeap = '윤년아님!'
+
+    cond1 = (year % 4 == 0 and year % 100 != 0)
+    cond2 = (year % 400 == 0)
+    if cond1 or cond2 : isLeap = '윤년 맞음!@@'
+
+    print(f'{year} 년은 {isLeap} ')
+
+year = int(input('년도는?'))
+isLeapYear(year)
 
