@@ -118,5 +118,3 @@ def readOneSungJuk(sjno):
     conn.close()
     return sj
 
-
-
