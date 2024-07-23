@@ -35,10 +35,12 @@ while True:
 
     elif menu == '4':
         print('성적 데이터 수정')
-        pass
+        sjv7.modifySungJuk()
+
     elif menu == '5':
         print('성적 데이터 삭제')
         sjv7.removeSungJuk()
+
     elif menu == '0':
         print('프로그램 종료')
         sys.exit(0)
