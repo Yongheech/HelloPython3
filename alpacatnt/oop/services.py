@@ -145,26 +145,37 @@ class EmpService:
         emp.comm = float(emp.comm) if emp.comm != '0' else None
         emp.mgrid = int(emp.mgrid) if emp.mgrid != '0' else None
         emp.deptid = int(emp.deptid) if emp.deptid != '0' else None
-        empdao.insert_emp(emp)
         cnt = empdao.insert_emp(emp)
         print(f'{cnt} 건의 데이터가 추가됨')
 
 # 테이블에 저장된 사원 데이터들 중 기본 데이터만 모아서 출력
-    def show_emp(self):
-        pass
+    @staticmethod
+    def show_emp():
+        """
+        사원 테이블에서 사원번호, 이름, 이메일, 직책, 부서번호 출력
+        :return emps: 조회된 사원 정보
+        """
+        result = ''
+        emps = empdao.select_emp()
+        for emp in emps:
+            result += f' {emp.empid} {emp.fname} {emp.email} {emp.jobid} {emp.deptid}\n'
+        print(result)
 
     # 사원번호를 사원데이터 조회 후 출력
+    @staticmethod
     def showone_emp():
         pass
 
-    #
+    @staticmethod
     def remove_emp():
         pass
 
     # 사원번호를 입력받아 데이터 수정
+    @staticmethod
     def modify_emp():
         pass
 
     # 사원데이터를 수정
+    @staticmethod
     def readAgain_emp():
         pass

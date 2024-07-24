@@ -138,19 +138,19 @@ class EmpDAO:
 # 데이터베이스 연결객체와 커서 생성
     @staticmethod
     def _make_conn():
-
         conn = pymysql.connect(host=host, user=user,
                                password=passwd, database=dbname, charset ='utf8')
         cursor = conn.cursor()
-        return conn, cursor
+        return conn,cursor
 
     def _dis_conn(conn, cursor):
         cursor.close()
         conn.close()
+
     #  사원 데이터 총 갯수 조회
     @staticmethod
     def insert_emp(emp):
-        sql = ("insert into emp values "\
+        sql = "insert into emp values "\
                "(%s,%s,%s,%s, %s,%s,%s,%s, %s,%s,%s)"
         conn, cursor = EmpDAO._make_conn()
         params = (emp.empid,emp.fname,emp.lname,emp.email,emp.phone,
@@ -162,24 +162,17 @@ class EmpDAO:
         return cnt
 
     # 처리된 사원데이터를 테이블에 저장
-    def newEmp(emp):
-        pass
-
-    # 사원 데이터 전체 조회
-    def readAllEmp():
-        pass
-
-    # 사원 한명의 상세 조회
-    def readOneEmp(empid):
-        pass
-
-    # 사원 한명의 데이터 삭제
-    def deleteEmp(empid):
-        pass
-
-    # 사원 한명의 데이터를 수정
-    def updateEmp(emp):
-        pass
-
-def close(self):
-    pass
+    @staticmethod
+    def select_emp():
+        emps = []
+        sql = 'select empid, fname,email,jobid,deptid from emp'
+        conn,cursor = EmpDAO._make_conn()
+        cursor.execute(sql)
+        rs = cursor.fetchall()
+        for r in rs:
+            emp = Employee(r[0], r[1], None, r[2],
+                           None, None, r[3],
+                           None,None,None,r[4])
+            emps.append(emp)
+        EmpDAO._dis_conn(conn, cursor)
+        return emps
