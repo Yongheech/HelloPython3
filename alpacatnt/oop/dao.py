@@ -1,26 +1,49 @@
-import sqlite3
+# import sqlite3
+import pymysql
 
 from alpacatnt.oop.models import SungJuk
 
+# 데이터베이스 연결 문자열
+host = '54.180.227.105'
+dbname = 'clouds2024'
+user = 'clouds2024'
+passwd = 'clouds2024'
 
 # 성적 DAO 클래스
 class SungJukDAO:
+
     # 데이터베이스 연결객체와 커서 생성
     @staticmethod
     def _make_conn():
-        conn = sqlite3.connect('db/python.db')
+        """
+        파이썬에서 마리아디비로 콘솔을 연결하는 함수
+        :return:
+        """
+        conn = pymysql.connect(host=host, user=user,
+                               password=passwd, database=dbname, charset ='utf8')
         cursor = conn.cursor()
         return conn, cursor
 
     # 데이터베이스 연결객체와 커서 종료
     @staticmethod
     def _dis_conn(conn,cursor):
+        """
+        연결된 콘솔을 닫는 함수
+        :param conn: 연결된 conn 을 닫는다
+        :param cursor: 연결된 cursor 을 닫는다
+        :return:
+        """
         cursor.close()
         conn.close()
     @staticmethod
     def insert_sungjuk(sj):
+        """
+        입력한 성적데이터를 sungjuk 테이블에 저장
+        :param sj: 테이블에 저장할 성적데이터
+        :return: cnt: 테이블에 성공적으로 저장된 데이터 건수
+        """
         sql = 'insert into sungjuk (name, kor, eng, mat, tot, avg, grd)\
-            values (?,?,?,?, ?,?,?)'
+            values (%s,%s,%s,%s, %s,%s,%s)'
         conn, cursor = SungJukDAO._make_conn()
         params = (sj.name,sj.kor,sj.eng,sj.mat,sj.tot,sj.avg,sj.grd)
         cursor.execute(sql, params)
@@ -31,8 +54,12 @@ class SungJukDAO:
 
     @staticmethod
     def select_sungjuk():
+        """
+        sungjuk 테이블에서 모든 성적 데이터(번호/이름/국어/영어/수학/등록일)를 읽어옴
+        :return: 조회된 성적데이터 객체
+        """
         sjs = []
-        sql = 'select sjno, name,kor,eng,mat, substr(regdate,0,11) regdate from sungjuk'
+        sql = 'select sjno, name,kor,eng,mat, substr(regdate,1,11) regdate from sungjuk'
         conn,cursor = SungJukDAO._make_conn()
         cursor.execute(sql)
         rs = cursor.fetchall()
@@ -48,7 +75,12 @@ class SungJukDAO:
 
     @staticmethod
     def selectone_sungjuk(sjno):
-        sql = 'select * from sungjuk where sjno = ?'
+        """
+        sungjuk 테이블에서 특정학생 성적데이터를 읽어옴
+        :param sjno: 조회할 학생의 학생번호
+        :return: sj: 조회된 학생의 성적데이터
+        """
+        sql = 'select * from sungjuk where sjno = %s'
         conn, cursor = SungJukDAO._make_conn()
         params = (sjno,)
         cursor.execute(sql,params)
@@ -67,8 +99,13 @@ class SungJukDAO:
         return sj
     @staticmethod
     def update_sungjuk(sj):
-        sql = 'update sungjuk set  kor=?, eng=?, mat=?, tot=?, avg=?, grd=? \
-           where sjno = ?'
+        """
+        sungjuk 테이블에 특정학생의 성적데이터를 새로운 성적데이터로 수정함
+        :param sj: 수정할 학생의 성적데이터들
+        :return:cnt: 테이블의 성공적으로 수정된 데이터 건수
+        """
+        sql = 'update sungjuk set  kor=%s, eng=%s, mat=%s, tot=%s, avg=%s, grd=%s \
+           where sjno = %s'
         conn, cursor = SungJukDAO._make_conn()
         params = (sj.kor, sj.eng, sj.mat, sj.tot, sj.avg, sj.grd, sj.sjno)
         cursor.execute(sql, params)
@@ -79,7 +116,12 @@ class SungJukDAO:
 
     @staticmethod
     def delete_sungjuk(sjno):
-        sql = 'delete from sungjuk where sjno = ?'
+        """
+        sungjuk 테이블의 특정학생의 성적데이터를 삭제함
+        :param sjno: 삭제할 학생의 학생번호
+        :return:cnt: 테이블의 성공적으로 삭제된 데이터 건수
+        """
+        sql = 'delete from sungjuk where sjno = %s'
         conn, cursor = SungJukDAO._make_conn()
         params = (sjno,)
         cursor.execute(sql, params)
