@@ -164,7 +164,14 @@ class EmpService:
     # 사원번호를 사원데이터 조회 후 출력
     @staticmethod
     def showone_emp():
-        pass
+        empid = input('조회할 사원 번호는?')
+        result = '데이터가 존재하지 않아요!!'
+        emp = empdao.selectone_emp(empid)
+        if emp:  # 조회한 데이터가 존재한다면
+            result = (f'{emp.empid} {emp.fname} {emp.lname} {emp.email} {emp.phone} \n'
+                      f' {emp.hdate}{emp.jobid} {emp.sal} {emp.comm} {emp.mgrid} {emp.deptid} ')
+        print(result)
+
 
     @staticmethod
     def remove_emp():
@@ -175,7 +182,3 @@ class EmpService:
     def modify_emp():
         pass
 
-    # 사원데이터를 수정
-    @staticmethod
-    def readAgain_emp():
-        pass
