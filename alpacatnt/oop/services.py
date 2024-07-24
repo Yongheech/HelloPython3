@@ -1,5 +1,6 @@
-from alpacatnt.oop.models import SungJuk
+from alpacatnt.oop.models import SungJuk, Employee
 from alpacatnt.oop.dao import SungJukDAO as sjdao
+from alpacatnt.oop.dao import EmpDAO as empdao
 
 # 성적 서비스 클래스
 class SungJukService:
@@ -96,3 +97,74 @@ class SungJukService:
         sjno = input('삭제할 학생번호는?')
         cnt = sjdao.delete_sungjuk(sjno)
         print(f'{cnt} 건 데이터가 삭제됨!!')
+
+
+# 사원 서비스 클래스
+from alpacatnt.oop.dao import EmpDAO as sjdao
+
+class EmpService:
+    @staticmethod
+    def display_menu():
+            main_menu = '''
+    ===========================
+        - 사원 관리 프로그램 - 
+    ===========================
+        1. 사원 데이터 추가
+        2. 사원 데이터 조회
+        3. 사원 데이터 상세조회
+        4. 사원 데이터 수정
+        5. 사원 데이터 삭제
+        0. 사원 관리 프로그램 종료
+    ===========================
+    '''
+            print(main_menu, end= '')
+            menu = input('=> 메뉴를 선택하세요 :')
+            return menu
+
+    # 사원 데이터를 입력 받는 함수
+    @staticmethod
+    def read_emp():
+        empid = input(f'사원 번호는?')
+        fname = input(f'사원 이름은?')
+        lname = input(f'사원 성은?')
+        email = input(f'사원 이메일은?')
+        phone = input(f'사원 전화번호는?')
+        hdate = input(f'사원 입사일은?')
+        jodid = input(f'사원 직책은?')
+        sal = input(f'사원 급여는?')
+        comm = input(f'사원 수당은? (없으면 0)')
+        mgrid = input(f'사원 매니저 번호는? (없으면0)')
+        deptid = input(f'사원 부서 번호는? (없으면0)')
+        return Employee(empid,fname,lname,email,phone,
+                        hdate,jodid,sal,comm,mgrid,deptid)
+
+    # 입력받은 사원 데이터를 처리하고 테이블에 저장
+    @staticmethod
+    def add_emp():
+        emp = EmpService.read_emp()
+        emp.comm = float(emp.comm) if emp.comm != '0' else None
+        emp.mgrid = int(emp.mgrid) if emp.mgrid != '0' else None
+        emp.deptid = int(emp.deptid) if emp.deptid != '0' else None
+        empdao.insert_emp(emp)
+        cnt = empdao.insert_emp(emp)
+        print(f'{cnt} 건의 데이터가 추가됨')
+
+# 테이블에 저장된 사원 데이터들 중 기본 데이터만 모아서 출력
+    def show_emp(self):
+        pass
+
+    # 사원번호를 사원데이터 조회 후 출력
+    def showone_emp():
+        pass
+
+    #
+    def remove_emp():
+        pass
+
+    # 사원번호를 입력받아 데이터 수정
+    def modify_emp():
+        pass
+
+    # 사원데이터를 수정
+    def readAgain_emp():
+        pass

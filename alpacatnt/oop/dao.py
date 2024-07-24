@@ -3,6 +3,7 @@ import pymysql
 
 from alpacatnt.oop.models import SungJuk
 
+from alpacatnt.oop.models import Employee
 # 데이터베이스 연결 문자열
 host = '54.180.227.105'
 dbname = 'clouds2024'
@@ -129,3 +130,56 @@ class SungJukDAO:
         conn.commit()
         SungJukDAO._dis_conn(conn,cursor)
         return cnt
+
+# 사원 DAO 클래스
+class EmpDAO:
+
+
+# 데이터베이스 연결객체와 커서 생성
+    @staticmethod
+    def _make_conn():
+
+        conn = pymysql.connect(host=host, user=user,
+                               password=passwd, database=dbname, charset ='utf8')
+        cursor = conn.cursor()
+        return conn, cursor
+
+    def _dis_conn(conn, cursor):
+        cursor.close()
+        conn.close()
+    #  사원 데이터 총 갯수 조회
+    @staticmethod
+    def insert_emp(emp):
+        sql = ("insert into emp values "\
+               "(%s,%s,%s,%s, %s,%s,%s,%s, %s,%s,%s)"
+        conn, cursor = EmpDAO._make_conn()
+        params = (emp.empid,emp.fname,emp.lname,emp.email,emp.phone,
+                  emp.hdate,emp.jobid,emp.sal,emp.comm,emp.mgrid,emp.deptid)
+        cursor.execute(sql, params)
+        cnt = cursor.rowcount
+        conn.commit()
+        EmpDAO._dis_conn(conn, cursor)
+        return cnt
+
+    # 처리된 사원데이터를 테이블에 저장
+    def newEmp(emp):
+        pass
+
+    # 사원 데이터 전체 조회
+    def readAllEmp():
+        pass
+
+    # 사원 한명의 상세 조회
+    def readOneEmp(empid):
+        pass
+
+    # 사원 한명의 데이터 삭제
+    def deleteEmp(empid):
+        pass
+
+    # 사원 한명의 데이터를 수정
+    def updateEmp(emp):
+        pass
+
+def close(self):
+    pass
