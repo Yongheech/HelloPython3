@@ -203,6 +203,7 @@ class EmpService:
         nemp = Employee(emp.empid, None,None, None,None,
                         None, None,None, None,None,
                         None,)
+
         nemp.email = input(f' 수정할 사원 이메일은?({emp.email})')
         nemp.phone = input(f'수정할 사원 전화번호는?({emp.phone})')
         nemp.jobid = input(f'수정할 사원 직책은?({emp.jobid})')
