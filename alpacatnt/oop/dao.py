@@ -132,6 +132,9 @@ class SungJukDAO:
         return cnt
 
 # 사원 DAO 클래스
+
+
+
 class EmpDAO:
 
 
@@ -147,7 +150,7 @@ class EmpDAO:
         cursor.close()
         conn.close()
 
-    #  사원 데이터 총 갯수 조회
+#  사원 데이터 총 갯수 조회
     @staticmethod
     def insert_emp(emp):
         sql = "insert into emp values "\
@@ -191,3 +194,29 @@ class EmpDAO:
             emp = None
         EmpDAO._dis_conn(conn, cursor)
         return emp
+
+    @staticmethod
+    def delete_emp(empid):
+        sql = 'delete from emp where empid =%s'
+        conn, cursor = EmpDAO._make_conn()
+        params = (empid,)
+        cursor.execute(sql, params)
+        cnt = cursor.rowcount
+        conn.commit()
+        EmpDAO._dis_conn(conn,cursor)
+        return cnt
+
+    @staticmethod
+    def update_emp(emp):
+     sql = 'update emp set email=%s, phone=%s,jobid=%s,\
+       sal=%s,comm=%s, mgrid=%s, deptid=%s \
+       where empid = %s'
+     conn, cursor = EmpDAO._make_conn()
+     params = (emp.email,emp.phone,emp.jobid,emp.sal,emp.comm,emp.mgrid,emp.deptid,emp.empid)
+     cursor.execute(sql, params)
+     cnt = cursor.rowcount
+     conn.commit()
+     EmpDAO._dis_conn(conn, cursor)
+     return cnt
+
+
